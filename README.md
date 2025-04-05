@@ -40,3 +40,13 @@ Implemented a **server-side proxy route** within our Next.js app using the `/api
 - Next.js (App Router)
 - Tailwind CSS
 - OpenFoodFacts API
+
+### Time Taken to Complete the Assignment
+
+The total time taken to complete this assignment was approximately 7–8 hours, which included:
+
+- Project setup and configuration (Next.js, Tailwind CSS) – ~20 minutes
+- Implementing filters (search by name, barcode, category, sort) – ~1.5 hours
+- Resolving CORS issue for category data via server-side API – ~1 hour
+- Styling UI components and layout adjustments – ~1 hour
+- Testing and debugging – ~30 minutes
