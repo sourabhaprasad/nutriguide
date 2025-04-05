@@ -50,3 +50,10 @@ The total time taken to complete this assignment was approximately 7–8 hours, 
 - Resolving CORS issue for category data via server-side API – ~1 hour
 - Styling UI components and layout adjustments – ~1 hour
 - Testing and debugging – ~30 minutes
+
+### Contact Me
+
+- **Name:** Sourabha K H
+- **Email:** [sourabhaprasad04@example.com]
+- **GitHub:** [https://github.com/sourabhaprasad](https://github.com/sourabhaprasad)
+- **LinkedIn:** [https://www.linkedin.com/in/sourabhaprasad/](https://www.linkedin.com/in/sourabhaprasad)
