@@ -54,6 +54,6 @@ The total time taken to complete this assignment was approximately 7–8 hours, 
 ### Contact Me
 
 - **Name:** Sourabha K H
-- **Email:** [sourabhaprasad04@gmail.com]
-- **GitHub:** [https://github.com/sourabhaprasad](https://github.com/sourabhaprasad)
-- **LinkedIn:** [https://www.linkedin.com/in/sourabhaprasad/](https://www.linkedin.com/in/sourabhaprasad)
+- **Email:** [sourabhaprasad04](mailto:sourabhahprasad04@gmail.com)
+- **GitHub:** [Profile](https://github.com/sourabhaprasad)
+- **LinkedIn:** [Profile](https://www.linkedin.com/in/sourabhaprasad)
