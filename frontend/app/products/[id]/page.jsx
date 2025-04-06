@@ -38,41 +38,46 @@ export default function ProductDetailPage() {
   if (error) return <p className="text-center text-red-500 mt-8">{error}</p>;
 
   return (
-    <div className="max-w-3xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-4">
+    <div className="max-w-5xl mx-auto p-6">
+      <h1 className="text-3xl font-bold mb-6 text-center">
         {product.product_name || "Unnamed Product"}
       </h1>
-      <img
-        src={product.image_front_url || "/placeholder.png"}
-        alt={product.product_name || "Product"}
-        className="w-auto h-auto max-w-md mx-auto mb-4"
-      />
 
-      <div className="space-y-2">
-        <p>
-          <strong>Code:</strong> {product.code}
-        </p>
-        <p>
-          <strong>Categories:</strong>{" "}
-          {product.categories_tags?.join(", ") || "Unknown"}
-        </p>
-        <p>
-          <strong>Nutrition Grade:</strong>{" "}
-          {product.nutrition_grades?.toUpperCase() || "N/A"}
-        </p>
-        <p>
-          <strong>Ingredients:</strong>{" "}
-          {product.ingredients_text || "Not available"}
-        </p>
-        <p>
-          <strong>Quantity:</strong> {product.quantity || "N/A"}
-        </p>
-        <p>
-          <strong>Brands:</strong> {product.brands || "N/A"}
-        </p>
-        <p>
-          <strong>Labels:</strong> {product.labels_tags?.join(", ") || "None"}
-        </p>
+      <div className="flex flex-col md:flex-row gap-6">
+        <div className="flex-shrink-0">
+          <img
+            src={product.image_front_url || "/placeholder.png"}
+            alt={product.product_name || "Product"}
+            className="w-full md:w-72 h-auto object-contain rounded shadow"
+          />
+        </div>
+
+        <div className="space-y-3">
+          <p>
+            <strong>Code:</strong> {product.code}
+          </p>
+          <p>
+            <strong>Categories:</strong>{" "}
+            {product.categories_tags?.join(", ") || "Unknown"}
+          </p>
+          <p>
+            <strong>Nutrition Grade:</strong>{" "}
+            {product.nutrition_grades?.toUpperCase() || "N/A"}
+          </p>
+          <p>
+            <strong>Ingredients:</strong>{" "}
+            {product.ingredients_text || "Not available"}
+          </p>
+          <p>
+            <strong>Quantity:</strong> {product.quantity || "N/A"}
+          </p>
+          <p>
+            <strong>Brands:</strong> {product.brands || "N/A"}
+          </p>
+          <p>
+            <strong>Labels:</strong> {product.labels_tags?.join(", ") || "None"}
+          </p>
+        </div>
       </div>
     </div>
   );
