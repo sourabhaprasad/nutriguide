@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -11,10 +12,13 @@ export default function Navbar() {
   return (
     <nav
       className="bg-[#F5F5F4] border-b border-[#E5E7EB] px-6 py-4 shadow-sm 
-                    fixed md:static top-0 left-0 w-full z-50"
+                 fixed md:static top-0 left-0 w-full z-50"
     >
       <div className="flex justify-between items-center">
-        <h1 className="text-xl font-semibold text-[#333]">NutriGuide</h1>
+        <div className="flex items-center space-x-2">
+          <Image src="/logo.png" alt="Logo" width={40} height={40} />
+          <h1 className="text-xl font-semibold text-[#333]">NutriGuide</h1>
+        </div>
 
         <button
           onClick={() => setMenuOpen(!menuOpen)}
@@ -24,6 +28,7 @@ export default function Navbar() {
           {menuOpen ? "✖" : "☰"}
         </button>
 
+        {/* Desktop Nav */}
         <div className="hidden md:flex space-x-4">
           <Link href="/" className={navLinkStyle}>
             Home
@@ -37,6 +42,7 @@ export default function Navbar() {
         </div>
       </div>
 
+      {/* Mobile Dropdown */}
       <div
         className={`md:hidden transition-all duration-300 ease-in-out ${
           menuOpen ? "max-h-40 mt-4" : "max-h-0 overflow-hidden"
