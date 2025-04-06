@@ -16,7 +16,6 @@ export default function Navbar() {
       <div className="flex justify-between items-center">
         <h1 className="text-xl font-semibold text-[#333]">NutriGuide</h1>
 
-        {/* Hamburger menu button (visible on mobile) */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="md:hidden text-2xl focus:outline-none"
@@ -25,7 +24,6 @@ export default function Navbar() {
           {menuOpen ? "✖" : "☰"}
         </button>
 
-        {/* Desktop nav links */}
         <div className="hidden md:flex space-x-4">
           <Link href="/" className={navLinkStyle}>
             Home
@@ -39,7 +37,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu dropdown */}
       <div
         className={`md:hidden transition-all duration-300 ease-in-out ${
           menuOpen ? "max-h-40 mt-4" : "max-h-0 overflow-hidden"
