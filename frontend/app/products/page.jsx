@@ -9,14 +9,11 @@ export default function ProductsPage() {
   const [hasMore, setHasMore] = useState(true);
   const loader = useRef(null);
   const [categories, setCategories] = useState([]);
-
-  // Filters & Sorting
   const [searchTerm, setSearchTerm] = useState("");
   const [barcode, setBarcode] = useState("");
   const [category, setCategory] = useState("");
   const [sortOption, setSortOption] = useState("");
 
-  // Fetch products
   const fetchProducts = async (pageNum = 1) => {
     try {
       // If barcode is specified, use the direct product lookup API
@@ -46,7 +43,7 @@ export default function ProductsPage() {
         return;
       }
 
-      // Otherwise use general search API
+      // if not use general search API
       const res = await fetch(
         `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${searchTerm}&page=${pageNum}&page_size=20&fields=product_name,code,image_front_small_url,nutrition_grades,categories_tags&json=1`
       );
@@ -128,13 +125,11 @@ export default function ProductsPage() {
       let topCategories;
 
       if (Array.isArray(data)) {
-        // fallback array of strings
         topCategories = data.map((name) => ({
           name,
           value: name.toLowerCase().replace(/\s+/g, "-"),
         }));
       } else if (Array.isArray(data.tags)) {
-        // actual API format
         topCategories = data.tags
           .filter((cat) => cat.products > 1000)
           .slice(0, 30)
@@ -156,7 +151,6 @@ export default function ProductsPage() {
     fetchCategories();
   }, []);
 
-  // Trigger fetch on page or filters change
   useEffect(() => {
     setProducts([]);
     setPage(1);
@@ -173,7 +167,6 @@ export default function ProductsPage() {
     setHasMore(true);
   };
 
-  // Infinite scroll observer
   const handleObserver = useCallback(
     (entries) => {
       const target = entries[0];
@@ -201,10 +194,9 @@ export default function ProductsPage() {
 
   return (
     <main className="bg-[#FAFAF9] min-h-screen px-4 py-6">
-      {/* Filter Bar */}
       <form
         onSubmit={handleFilterSubmit}
-        className="flex flex-wrap gap-3 mb-4 items-end justify-center"
+        className="flex flex-wrap gap-3 mb-4 mt-12 md:mt-0 items-end justify-center"
       >
         <div className="flex flex-col">
           <label className="text-sm font-medium">Name</label>
