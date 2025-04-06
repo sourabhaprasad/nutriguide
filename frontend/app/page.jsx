@@ -3,7 +3,6 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="text-[#2E2E2E] flex flex-col min-h-screen">
-      {/* Section 1 */}
       <section
         className="relative flex items-center justify-center text-center px-4 py-10 h-screen sm:h-[80vh] bg-cover bg-center"
         style={{
@@ -23,7 +22,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section 2 */}
       <section
         className="relative flex items-center justify-center px-6 h-screen bg-cover bg-center"
         style={{
@@ -33,7 +31,6 @@ export default function Home() {
       >
         <div className="absolute inset-0 bg-black/70 z-0" />
 
-        {/* Centered content wrapper */}
         <div className="relative z-10 flex flex-col items-center text-center gap-6 px-4 max-w-2xl">
           <p className="text-white text-xl sm:text-2xl leading-relaxed">
             Search and explore food products from around the world. Get
