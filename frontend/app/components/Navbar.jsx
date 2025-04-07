@@ -7,7 +7,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navLinkStyle =
-    "block px-4 py-2 rounded transition duration-200 hover:bg-gray-100 hover:text-[#6FCF97] hover:scale-105";
+    "block px-4 py-2 rounded transition duration-200 bg-transparent text-gray-700 hover:bg-gray-200 hover:text-green-400 hover:scale-105";
 
   return (
     <nav
