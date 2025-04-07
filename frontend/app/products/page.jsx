@@ -160,8 +160,13 @@ export default function ProductsPage() {
     setProducts([]);
     setPage(1);
     setHasMore(true);
-    fetchProducts(1); // Fetch fresh data on filter change
+    fetchProducts(1);
   }, [searchTerm, barcode, category, sortOption]);
+
+  // useEffect(() => {
+  //   if (page === 1) return;
+  //   fetchProducts(page);
+  // }, [page]);
 
   useEffect(() => {
     if (page !== 1) fetchProducts(page);
