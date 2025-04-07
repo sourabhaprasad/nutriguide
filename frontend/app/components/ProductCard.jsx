@@ -5,17 +5,17 @@ export default function ProductCard({ product }) {
   const getGradeColor = (grade) => {
     switch (grade) {
       case "A":
-        return "bg-green-500 text-white";
+        return "bg-green-200 text-green-800";
       case "B":
-        return "bg-lime-500 text-white";
+        return "bg-lime-200 text-lime-800";
       case "C":
-        return "bg-yellow-400 text-black";
+        return "bg-yellow-200 text-yellow-800";
       case "D":
-        return "bg-orange-500 text-white";
+        return "bg-orange-200 text-orange-800";
       case "E":
-        return "bg-red-600 text-white";
+        return "bg-red-200 text-red-800";
       default:
-        return "bg-gray-300 text-black";
+        return "bg-gray-200 text-gray-700";
     }
   };
 
@@ -27,15 +27,16 @@ export default function ProductCard({ product }) {
 
   return (
     <Link href={`/products/${product.id}`} passHref>
-      <div className="bg-white border border-[#E5E7EB] rounded-lg shadow-sm hover:shadow-md transition cursor-pointer overflow-hidden">
-        <div className="w-full h-auto flex justify-center items-center p-4">
+      <div className="bg-white border border-[#E5E7EB] rounded-lg shadow-sm hover:shadow-md transition cursor-pointer overflow-hidden flex flex-col h-full">
+        <div className="w-full h-48 flex justify-center items-center bg-white p-4">
           <img
             src={product.image}
             alt={product.name}
-            className="object-contain w-auto h-auto max-h-40"
+            className="h-full object-contain"
           />
         </div>
-        <div className="p-4">
+
+        <div className="p-4 flex flex-col justify-between flex-grow">
           <div className="flex justify-between items-start mb-2">
             <h3 className="text-lg font-semibold text-[#2E2E2E]">
               {product.name}
@@ -47,13 +48,15 @@ export default function ProductCard({ product }) {
               Add to Cart
             </button>
           </div>
-          <p className="text-sm text-[#6B7280]">Category: {product.category}</p>
+          <p className="text-sm text-[#6B7280] mb-2">
+            Category: {product.category}
+          </p>
           <div
-            className={`inline-block px-2 py-1 text-xs font-semibold rounded ${getGradeColor(
+            className={`inline-block px-3 py-1 text-xs font-medium rounded ${getGradeColor(
               product.nutritionGrade
             )}`}
           >
-            {product.nutritionGrade}
+            Nutrition Grade: {product.nutritionGrade || "Unknown"}
           </div>
         </div>
       </div>
