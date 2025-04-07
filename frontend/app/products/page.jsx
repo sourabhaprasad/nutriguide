@@ -74,7 +74,7 @@ export default function ProductsPage() {
           id: p.code,
           name: p.product_name || "Unnamed Product",
           image: p.image_front_small_url,
-          category: p.categories_tags?.[0]?.split(":")[1] || "Unknown",
+          category: formatCategories(p.categories_tags),
           nutritionGrade: p.nutrition_grades?.toUpperCase() || "N/A",
         }));
 
@@ -140,13 +140,13 @@ export default function ProductsPage() {
           .slice(0, 30)
           .map((cat) => ({
             name: cat.name,
-            value: cat.id, // use full id like "en:snacks"
+            value: cat.id,
           }));
       } else {
         throw new Error("Unexpected category data format");
       }
 
-      setCategories(topCategories);
+      setCategories(topCategories.slice(0, 5));
     } catch (error) {
       console.error("Error fetching categories:", error);
     }
