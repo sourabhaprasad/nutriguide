@@ -14,9 +14,18 @@ export default function ProductsPage() {
   const [category, setCategory] = useState("");
   const [sortOption, setSortOption] = useState("");
 
+  const formatCategories = (tags) => {
+    if (!Array.isArray(tags)) return "Unknown";
+    return tags
+      .map((tag) => tag.split(":")[1])
+      .map((cat) =>
+        cat.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase())
+      )
+      .join(", ");
+  };
+
   const fetchProducts = async (pageNum = 1) => {
     try {
-      // If barcode is specified, use the direct product lookup API
       if (barcode) {
         const res = await fetch(
           `https://world.openfoodfacts.org/api/v0/product/${barcode}.json`
@@ -29,7 +38,7 @@ export default function ProductsPage() {
             id: p.code,
             name: p.product_name || "Unnamed Product",
             image: p.image_front_small_url,
-            category: p.categories_tags?.[0]?.split(":")[1] || "Unknown",
+            category: formatCategories(p.categories_tags),
             nutritionGrade: p.nutrition_grades?.toUpperCase() || "N/A",
           };
 
@@ -43,7 +52,6 @@ export default function ProductsPage() {
         return;
       }
 
-      // if not use general search API
       const res = await fetch(
         `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${searchTerm}&page=${pageNum}&page_size=20&fields=product_name,code,image_front_small_url,nutrition_grades,categories_tags&json=1`
       );
@@ -58,10 +66,7 @@ export default function ProductsPage() {
           const matchesBarcode = !barcode || p.code === barcode;
 
           const matchesCategory =
-            !category ||
-            p.categories_tags?.some((tag) =>
-              tag.toLowerCase().includes(`en:${category.toLowerCase()}`)
-            );
+            !category || p.categories_tags?.includes(category.toLowerCase());
 
           return matchesSearch && matchesBarcode && matchesCategory;
         })
@@ -91,7 +96,7 @@ export default function ProductsPage() {
   };
 
   const sortProducts = (products, option) => {
-    const nutritionOrder = { A: 1, B: 2, C: 3, D: 4, E: 5, N: 6, NA: 6 }; // custom order
+    const nutritionOrder = { A: 1, B: 2, C: 3, D: 4, E: 5, N: 6, NA: 6 };
 
     return [...products].sort((a, b) => {
       switch (option) {
@@ -120,7 +125,7 @@ export default function ProductsPage() {
       const response = await fetch("/api/categories");
       const data = await response.json();
 
-      console.log("Fetched category data:", data); // for debugging
+      console.log("Fetched category data:", data);
 
       let topCategories;
 
@@ -135,7 +140,7 @@ export default function ProductsPage() {
           .slice(0, 30)
           .map((cat) => ({
             name: cat.name,
-            value: cat.id.split(":")[1],
+            value: cat.id, // use full id like "en:snacks"
           }));
       } else {
         throw new Error("Unexpected category data format");
@@ -155,7 +160,12 @@ export default function ProductsPage() {
     setProducts([]);
     setPage(1);
     setHasMore(true);
+    fetchProducts(1); // Fetch fresh data on filter change
   }, [searchTerm, barcode, category, sortOption]);
+
+  useEffect(() => {
+    if (page !== 1) fetchProducts(page);
+  }, [page]);
 
   const handleClearFilters = () => {
     setSearchTerm("");
@@ -189,7 +199,7 @@ export default function ProductsPage() {
     setProducts([]);
     setPage(1);
     setHasMore(true);
-    // fetchProducts(1);
+    fetchProducts(1);
   };
 
   return (
