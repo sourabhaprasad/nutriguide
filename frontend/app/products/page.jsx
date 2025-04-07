@@ -157,19 +157,8 @@ export default function ProductsPage() {
   }, []);
 
   useEffect(() => {
-    setProducts([]);
-    setPage(1);
-    setHasMore(true);
-    fetchProducts(1);
-  }, [searchTerm, barcode, category, sortOption]);
-
-  // useEffect(() => {
-  //   if (page === 1) return;
-  //   fetchProducts(page);
-  // }, [page]);
-
-  useEffect(() => {
-    if (page !== 1) fetchProducts(page);
+    if (page === 1) return;
+    fetchProducts(page);
   }, [page]);
 
   const handleClearFilters = () => {
